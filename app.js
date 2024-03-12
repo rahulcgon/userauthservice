@@ -6,13 +6,15 @@ const validator = require("validator");
 
 require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
+const mongodbUrl = process.env.MONGODB_URL;
+
 
 
 const app = express();
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/mydatabase", {
+mongoose.connect(mongodbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
