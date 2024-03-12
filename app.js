@@ -9,7 +9,6 @@ const jwtSecret = process.env.JWT_SECRET;
 const mongodbUrl = process.env.MONGODB_URL;
 
 
-
 const app = express();
 app.use(bodyParser.json());
 
@@ -63,7 +62,8 @@ app.post("/api/register", async (req, res) => {
 });
 
 function isStrongPassword(password) {
-    // Define a regular expression to enforce password strength rules
+    // Password must be at least 8 characters long and
+    // contain at least one digit, lowercase, uppercase letter and special char each
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>\/?]).{8,}$/;
     return regex.test(password);
 }
@@ -140,8 +140,8 @@ function authenticate(req, res, next) {
     });
 }
 
-// const cors = require('cors');
+const cors = require('cors');
 
-// app.use(cors({
-//     origin: 'https://yourdomain.com' // Replace with your allowed domain
-// }));
+app.use(cors({
+    origin: 'https://userauthservice.onrender.com'
+}));
