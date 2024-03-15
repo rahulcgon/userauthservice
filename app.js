@@ -28,6 +28,10 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+});
+
 // User registration API endpoint
 app.post("/api/register", async (req, res) => {
     const { email, password } = req.body;
